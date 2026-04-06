@@ -19,6 +19,10 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("endea-theme", theme);
   }, [theme]);
 
+  /**
+   * Toggles the site theme
+   * @returns {void}
+   */
   const toggleTheme = () =>
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
 

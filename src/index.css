@@ -82,7 +82,7 @@
     background: var(--text);
   }
 }
-.dark{
+.dark {
   color-scheme: dark;
 }
 /* Utility for the social icons filter in dark mode */
