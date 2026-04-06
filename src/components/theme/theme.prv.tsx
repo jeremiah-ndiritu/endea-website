@@ -25,7 +25,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     // 3. Persist
     localStorage.setItem("endea-theme", theme);
 
-    console.log(`Theme synced to DOM: ${theme}`); // Debugging line
+    //console.log(`Theme synced to DOM: ${theme}`); // Debugging line
   }, [theme]);
 
   const toggleTheme = () => {
