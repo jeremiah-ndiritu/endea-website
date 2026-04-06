@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  /* Refined Modern Dev Palette */
+  --color-text: light-dark(#4b5563, #9ca3af);
+  --color-text-h: light-dark(#111827, #f3f4f6);
+  --color-bg: light-dark(#ffffff, #0f172a);
+  /* Deep slate for dark mode */
+  --color-border: light-dark(#e5e7eb, #1e293b);
+  --color-code-bg: light-dark(#f1f5f9, #1e293b);
+
+  /* Modern "Indigo/Violet" Accent */
+  --color-accent: light-dark(#6366f1, #818cf8);
+  --color-accent-bg: light-dark(rgba(99, 102, 241, 0.1), rgba(129, 140, 248, 0.15));
+  --color-accent-border: light-dark(rgba(99, 102, 241, 0.2), rgba(129, 140, 248, 0.3));
+
+  --color-social-bg: light-dark(#f8fafc, #1e293b);
+  --color-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+    /* Map Tailwind variables to standard CSS vars for your custom CSS below */
+    --text: var(--color-text);
+    --text-h: var(--color-text-h);
+    --bg: var(--color-bg);
+    --border: var(--color-border);
+    --code-bg: var(--color-code-bg);
+    --accent: var(--color-accent);
+  }
+
+  body {
+    @apply antialiased bg-[var(--bg)] text-[var(--text)];
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+
+  #root {
+    @apply mx-auto min-h-svh flex flex-col border-x border-[var(--border)];
+    width: 1126px;
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-semibold text-[var(--text-h)] tracking-tight;
+  }
+
+  h1 {
+    @apply text-5xl lg:text-6xl my-8;
+  }
+
+  h2 {
+    @apply text-2xl lg:text-3xl mb-4;
+  }
+
+  code {
+    @apply font-mono text-sm px-1.5 py-0.5 rounded bg-[var(--code-bg)] text-[var(--text-h)];
+  }
+
+  /* Modern Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text);
+  }
+}
+.dark{
+  color-scheme: dark;
+}
+/* Utility for the social icons filter in dark mode */
+.dark #social .button-icon {
+
+  filter: invert(1) brightness(2);
+}
