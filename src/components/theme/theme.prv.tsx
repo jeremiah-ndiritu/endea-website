@@ -1,8 +1,9 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useLayoutEffect, useState, type ReactNode } from "react";
 import { type Theme, ThemeContext } from "./theme.ctx";
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState<Theme>(() => {
+    // Initial check: matches the blocking script in index.html
     const saved = localStorage.getItem("endea-theme");
     if (saved === "light" || saved === "dark") return saved;
     return window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -10,21 +11,26 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       : "light";
   });
 
-  useEffect(() => {
+  // useLayoutEffect runs BEFORE the browser paints, preventing the "flash"
+  useLayoutEffect(() => {
     const root = window.document.documentElement;
+
+    // 1. Update Classes
     root.classList.remove("light", "dark");
     root.classList.add(theme);
-    // This ensures light-dark() and color-scheme: light dark works perfectly
-    // root.style.colorScheme = theme;
+
+    // 2. Update CSS Property (Critical for light-dark() function)
+    root.style.setProperty("color-scheme", theme);
+
+    // 3. Persist
     localStorage.setItem("endea-theme", theme);
+
+    console.log(`Theme synced to DOM: ${theme}`); // Debugging line
   }, [theme]);
 
-  /**
-   * Toggles the site theme
-   * @returns {void}
-   */
-  const toggleTheme = () =>
+  const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

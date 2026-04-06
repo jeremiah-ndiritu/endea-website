@@ -22,9 +22,10 @@
           const supportDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           const activeTheme = theme || (supportDark ? 'dark' : 'light');
 
+          document.documentElement.classList.remove("light", "dark")
           document.documentElement.classList.add(activeTheme);
           document.documentElement.style.colorScheme = activeTheme;
-        } catch (e) { }
+        } catch (e) { console.log('[index.html] e :>> ', e);}
       })();
     </script>
   </body>
