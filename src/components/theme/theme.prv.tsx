@@ -15,7 +15,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     root.classList.remove("light", "dark");
     root.classList.add(theme);
     // This ensures light-dark() and color-scheme: light dark works perfectly
-    root.style.colorScheme = theme;
+    // root.style.colorScheme = theme;
     localStorage.setItem("endea-theme", theme);
   }, [theme]);
 
