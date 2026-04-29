@@ -12,7 +12,11 @@ const defaultCode = `
   title: "Kimani"
 }
 `;
-
+/**
+ * Parses the {@linkcode input} to produce the intended value
+ * @param input - the input from user
+ * @returns 
+ */
 function parseInputCode(input = "") {
   // 1. remove comments
   const noComments = input.replace(/\/\/.*$/gm, "");
